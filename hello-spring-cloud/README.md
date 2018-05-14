@@ -41,7 +41,7 @@ public class EurekaApplication {
 
 これだけでOK
 
----
+
 
 ### Producer 
 
@@ -81,7 +81,11 @@ eureka.instance.metadata-map.instanceId=${spring.application.name}:${random.valu
 eureka.instance.prefer-ip-address=true
 ```
 
-同様に、penサービスも作成。
+同様に、appleサービスも作成。
+
+appleサービスはポート違いで複数起動する。
+
+→STSのbootダッシュボードで構成を複製し、プログラムの引数に--server.port=nnnnを指定。
 
 
 起動後、Eurekaにアクセスしてみよう。
@@ -89,7 +93,7 @@ eureka.instance.prefer-ip-address=true
 http://localhost:8761/
 
 
----
+
 ### Consumer
 
 ここはLoadBalancing, CircuitBreakerと一気にいきます。
@@ -160,7 +164,7 @@ server.port=9001
 spring.application.name=un
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/
 ```
----
+
 
 
 ## Configによる集中管理
@@ -224,7 +228,7 @@ http://www.devglan.com/spring-cloud/refresh-property-config-runtime
 -> 参考にしたガイドは古いバージョンのものっぽい。actuator/refreshで正しい。
 
 ＜追記＞
-@refreshScopeを付けたControllerを突貫で作成してrefureshできました。
+@refreshScopeを付けたControllerを突貫で作成してrefreshできました。
 
 PenApplication.java
 ```java
@@ -247,14 +251,14 @@ public class PenApplication {
 
 }
 ```
----
+
 ## DEMO
 
 http://localhost:9001/
 
 
 
----
+
 ## 参考サイト
 
 [ぱぱっと理解するSpring Cloudの基本  by KAZUKI KUMAGAIさん](https://www.slideshare.net/kazukikumagai1/spring-cloud)
